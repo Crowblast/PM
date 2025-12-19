@@ -1,0 +1,204 @@
+/* assets/css/styles.css */
+:root {
+    /* Variables Light Mode */
+    --bg-color: #f4f6f9;
+    --card-bg: #ffffff;
+    --text-color: #333333;
+    --text-muted: #6c757d;
+    --primary-color: #2563eb; /* Blue 600 */
+    --primary-hover: #1d4ed8;
+    --success-color: #10b981;
+    --danger-color: #ef4444;
+    --border-color: #e5e7eb;
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+[data-theme="dark"] {
+    /* Variables Dark Mode */
+    --bg-color: #0f172a; /* Slate 900 */
+    --card-bg: #1e293b; /* Slate 800 */
+    --text-color: #f1f5f9;
+    --text-muted: #94a3b8;
+    --primary-color: #3b82f6;
+    --primary-hover: #60a5fa;
+    --border-color: #334155;
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
+    line-height: 1.6;
+}
+
+/* Layout */
+.app-container {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    min-height: 100vh;
+}
+
+.sidebar {
+    background-color: var(--card-bg);
+    border-right: 1px solid var(--border-color);
+    padding: 20px;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    overflow-y: auto;
+}
+
+.main-content {
+    padding: 30px;
+    overflow-y: auto;
+}
+
+/* Components */
+.card {
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: var(--shadow);
+    margin-bottom: 20px;
+    border: 1px solid var(--border-color);
+}
+
+.btn {
+    padding: 10px 20px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover);
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin-bottom: 10px;
+    font-size: 16px; /* Prevent zooming on iPhone */
+}
+
+input:focus, select:focus {
+    outline: 2px solid var(--primary-color);
+    border-color: transparent;
+}
+
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+th {
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+/* Mobile Overlay */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 998;
+    display: none;
+}
+
+.overlay.active {
+    display: block;
+}
+
+/* Hamburger Menu */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--text-color);
+    padding: 5px;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .app-container {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+        position: fixed;
+        left: -280px;
+        top: 0;
+        width: 250px;
+        height: 100%;
+        z-index: 999;
+        transition: left 0.3s ease-in-out;
+        box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+    }
+
+    .sidebar.active {
+        left: 0;
+    }
+
+    .main-content {
+        padding: 15px;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    /* Stack flex containers on mobile */
+    .flex-mobile-col {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+    }
+
+    /* Force buttons to be full width specific buttons if needed, or generally */
+    /* .btn { width: 100%; } */
+    
+    /* Dashboard grid adjustment */
+    .dashboard-grid {
+        grid-template-columns: 1fr !important;
+    }
+}
